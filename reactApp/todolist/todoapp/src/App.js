@@ -14,12 +14,13 @@ class App extends Component {
     //   todos: todos
     // })
   }
-  addTodo = (todo) => {
+  addTodoX = (todo) => {
     todo.id = Math.random();
-    let todos = [...this.props.todos, todo];
-    this.setState({
-      todos
-    })
+    this.props.addTodo(todo);
+    // let todos = [...this.props.todos, todo];
+    // this.setState({
+    //   todos
+    // })
   }
   render() {
     console.log(this.props);
@@ -27,7 +28,7 @@ class App extends Component {
       <div className="todo-app container">
       <h1 className="center pink-text"> Todo's </h1>
        <Todos todos = { this.props.todos } deleteTodoX= {this.deleteTodoX} />
-       <AddForm addTodo = {this.addTodo}/>
+       <AddForm addTodo = {this.addTodoX}/>
       </div>
     );
   }
@@ -41,7 +42,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteTodo: (id) => dispatch({type: 'DELETE_TODO', id: id})
+    deleteTodo: (id) => dispatch({type: 'DELETE_TODO', id: id}),
+    addTodo: (todo) => dispatch({type: 'ADD_TODO', todo: todo})
   }
 }
 

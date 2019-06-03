@@ -15,6 +15,12 @@ const rootReducer = (state = initState, action) => {
             todos: newTodos
         }
     }
+    if (action.type === 'ADD_TODO') {
+        return {
+            ...state,
+            todos: [...state.todos, action.todo]
+        }
+    }
     return state;
     
 }
