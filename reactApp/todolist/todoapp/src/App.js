@@ -22,13 +22,16 @@ class App extends Component {
     //   todos
     // })
   }
+  openPopUpX = (id) => {
+    this.props.openPopUp(id);
+  }
   render() {
     console.log(this.props);
     return (
       <div className="todo-app container">
-      <h1 className="center pink-text"> Todo's </h1>
-       <Todos todos = { this.props.todos } deleteTodoX= {this.deleteTodoX} />
-       <AddForm addTodo = {this.addTodoX}/>
+      <h1 className="center blue-text"> CoHabs Tasks </h1>
+       <Todos todos = { this.props.todos } deleteTodoX= {this.deleteTodoX} openPopUpX = {this.openPopUpX}/>
+       <AddForm addTodoX = {this.addTodoX}/>
       </div>
     );
   }
@@ -43,7 +46,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteTodo: (id) => dispatch({type: 'DELETE_TODO', id: id}),
-    addTodo: (todo) => dispatch({type: 'ADD_TODO', todo: todo})
+    addTodo: (todo) => dispatch({type: 'ADD_TODO', todo: todo}),
+    openPopUp: (id) => dispatch({type: 'OPEN_POPUP', id: id})
   }
 }
 

@@ -1,7 +1,7 @@
 const initState = {
     todos: [
-        {id: '1', content: 'watch movie-redux'},
-        {id: '2', content: 'make dinner-redux'}
+        {id: '1', content: 'Pick up parcel', showPopUp: false, popup: 'monitor from Amazon', tag: 'Jason'},
+        {id: '2', content: 'Clean house', showPopUp: false, popup: 'throw away trash', tag: 'Jess'}
     ]
 }
 
@@ -19,6 +19,16 @@ const rootReducer = (state = initState, action) => {
         return {
             ...state,
             todos: [...state.todos, action.todo]
+        }
+    }
+    if(action.type === "OPEN_POPUP") {
+        state.todos.forEach(element => {
+            if(element.id === action.id){
+                element.showPopUp = !element.showPopUp;
+            }
+        });
+        return {
+            todos: [...state.todos]
         }
     }
     return state;
