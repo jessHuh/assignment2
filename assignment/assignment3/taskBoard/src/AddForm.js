@@ -33,21 +33,46 @@ class AddForm extends Component {
     }
     render() {
         return(
-            <div>
+        <div>
+            <div class="#ffffff white">
                 <form onSubmit={this.handleSubmit}>
-                    <p> Add New Task </p>
-                    <label> Task:</label>
-                    <input type="text" onChange={this.handleChange} value={this.state.content}/>
-                    <label> Details:</label>
-                    <input type="text" onChange={this.handleChangeDetail} value={this.state.popup}/>
-                    <label> Tag</label>
-                    <input type="text" onChange={this.handleTag} value={this.state.tag}/>
-                    
-                    <button class="btn waves-effect waves-light" type="submit" name="action" onClick= {this.handleSubmit}>Submit
-                    <i class="material-icons right">send</i>
-                    </button>
+                    <p class="flow-text center-align"> </p>
+
+<div>
+    <div class="input-field col s6">
+      <i class="material-icons prefix">local_offer</i>
+      <input id="icon_prefix" type="text" class="validate" onChange={this.handleTag} value={this.state.tag}/>
+      <label for="icon_prefix">Tag</label>
+    </div>
+    <div class="input-field col s6">
+      <i class="material-icons prefix">insert_link</i>
+      <input id="icon_telephone" type="tel" class="validate" onChange={this.handleChangeDetail} value={this.state.popup}/>
+      <label for="icon_telephone">Link</label>
+    </div>  
+    <div class="input-field col s6">
+      <i class="material-icons prefix">edit</i>
+      <input id="icon_prefix" type="text" class="validate" onChange={this.handleChange} value={this.state.content} />
+      <label for="icon_prefix">Details</label>
+    </div>  
+
+  </div>
                 </form>
-            </div>
+                <div class="center-align">
+
+  <button class="btn waves-effect waves-light #039be5 light-blue darken-1 center-align" type="submit" name="action" onClick= {this.handleSubmit}>Add Link!
+                    
+                    </button>
+                    </div>
+                    
+    
+                </div>
+
+</div>
+               
+
+           
+
+    
         )
     }
 }
