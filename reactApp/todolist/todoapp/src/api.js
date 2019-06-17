@@ -5,6 +5,7 @@ const Task = require('./DataModel/task')
 // get a list of ninjas from the db
 router.get('/tasks', function(req, res, next){
     Task.find({}).then(function(tasks){
+        console.log(tasks);
         res.send(tasks);
     }).catch(next);
 });

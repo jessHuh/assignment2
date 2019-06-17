@@ -4,12 +4,14 @@ const mongoose = require('mongoose');
 
 // set up express app
 const app = express();
- 
+var port = process.env.PORT || 4000;
+
 //connect to mongodb
 mongoose.connect('mongodb://localhost/taskgo');
 mongoose.Promise = global.Promise;
 
-// app.use(express.static('public'));
+app.use(express.static('./public'));
+
 
 app.use(bodyParser.json());
 // initialize routes
@@ -22,8 +24,10 @@ app.use(function(err, req, res, next) {
 });
 
 // listen for requests
-app.listen(process.env.port || 4000, function(){
-    console.log('now listening for requests');
+
+// var port = process.env.PORT || 4000;
+app.listen(port, function(){
+    console.log('now listening for requests' + port);
 
 });
 

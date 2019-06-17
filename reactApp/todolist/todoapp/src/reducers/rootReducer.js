@@ -1,8 +1,10 @@
+// import { bindActionCreators } from "../../../../../../../../../AppData/Local/Microsoft/TypeScript/3.5/node_modules/redux";
+
+// import api from './api';
+
+
 const initState = {
-    todos: [
-        {id: '1', content: 'Pick up parcel', showPopUp: false, popup: 'monitor from Amazon', tag: 'Jason'},
-        {id: '2', content: 'Clean house', showPopUp: false, popup: 'throw away trash', tag: 'Jess'}
-    ]
+    todos: []
 }
 
 const rootReducer = (state = initState, action) => {
@@ -30,6 +32,12 @@ const rootReducer = (state = initState, action) => {
         return {
             todos: [...state.todos]
         }
+    }
+
+    if(action.type ==='INIT_STATUS') {
+        return {
+            todos: action.todos
+        };
     }
     return state;
     
