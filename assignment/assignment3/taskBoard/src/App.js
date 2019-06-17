@@ -76,10 +76,26 @@ class App extends Component {
   render() {
     //console.log(this.props);
     return (
-      <div className="todo-app container">
-      <h1 className="center blue-text"> CoHabs Tasks </h1>
+      <div className="todo-app container  #ffffff white">
+      {/* <h1 className="center blue-text"> Jessica's Favorite Links </h1> */}
+      <nav>
+    <div class="nav-wrapper   #039be5 light-blue darken-1 ">
+      <a href="#!" class="brand-logo"><i class="material-icons center-align">wb_incandescent</i>Jessica's Favorite Links</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
+        <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+        <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+      </ul>
+    </div>
+  </nav>
+  <div>
+  <AddForm addTodoX = {this.addTodoX}/>
+  </div>
+  <div>
        <Todos todos = { this.props.todos } deleteTodoX= {this.deleteTodoX} openPopUpX = {this.openPopUpX}/>
-       <AddForm addTodoX = {this.addTodoX}/>
+       </div>
+       {/* <AddForm addTodoX = {this.addTodoX}/> */}
       </div>
     );
   }
