@@ -34,6 +34,18 @@ const rootReducer = (state = initState, action) => {
         }
     }
 
+    if(action.type === "OPEN_EDIT") {
+        state.todos.forEach(element => {
+            if(element.id === action.id){
+                element.showedit = !element.showedit;
+            }
+        });
+        return {
+            todos: [...state.todos]
+        }
+    }
+
+
     if(action.type ==='INIT_STATUS') {
         return {
             todos: action.todos

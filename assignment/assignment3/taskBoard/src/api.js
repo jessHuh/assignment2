@@ -5,7 +5,7 @@ const Task = require('./DataModel/task')
 // get a list of ninjas from the db
 router.get('/tasks', function(req, res, next){
     Task.find({}).then(function(tasks){
-        console.log(tasks);
+        // console.log(tasks);
         res.send(tasks);
     }).catch(next);
 });
@@ -20,7 +20,9 @@ router.post('/tasks', function(req, res, next){
 // update a ninja in the db
 router.put('/tasks/:id', function(req, res, next){
     Task.findOneAndUpdate({id: req.params.id}, req.body).then(function(){
+        
         Task.findOne({id: req.params.id}).then(function(task){
+            console.log(res);
             res.send(task); 
         });
     });
