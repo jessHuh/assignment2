@@ -21,17 +21,9 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
-  // componentDidUpdate() {
-  //   this
-  //   .callBackendAPI()
-  //   .then(res => this.props.initTodo(res))
-  //   .catch(err => console.log(err));
-  // }
-
   callBackendAPI = async () => {
     const response = await fetch("/api/tasks");
     const body = await response.json();
-    console.log(body)
     if (response.status !== 200) {
       throw Error(body.message);
     }
@@ -47,14 +39,9 @@ class App extends Component {
     .then(response => console.log('Success:', JSON.stringify(response)))
     .catch(error => console.error('Error:', error));
     this.componentDidMount();
-    //this.props.deleteTodo(id);
-    // const todos = this.props.todos.filter(todo => {
-    //   return todo.id !== id
-    // });
-    // this.setState({
-    //   todos: todos
-    // })
   }
+
+
   addTodoX = (todo) => {
     todo.id = Math.random().toString();
     fetch("/api/tasks", {
@@ -70,14 +57,31 @@ class App extends Component {
     this.componentDidMount();
   }
 
+  editTodoX = (todo) => {
+    fetch("/api/tasks/" + todo.id, {
+      method: 'PUT',  
+      body: JSON.stringify(todo),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(response => console.log('Success:', JSON.stringify(response)))
+    .catch(error => console.error('Error:', error));
+    this.componentDidMount();
+  }
+
   openPopUpX = (id) => {
     this.props.openPopUp(id);
   }
+
+  
+  openEditX = (id) => {
+    this.props.openEidt(id);
+  }
   render() {
-    //console.log(this.props);
     return (
       <div className="todo-app container  #ffffff white">
-      {/* <h1 className="center blue-text"> Jessica's Favorite Links </h1> */}
       <nav>
     <div class="nav-wrapper   #039be5 light-blue darken-1 ">
       <a href="#!" class="brand-logo"><i class="material-icons center-align">wb_incandescent</i>Jessica's Favorite Links</a>
@@ -93,9 +97,8 @@ class App extends Component {
   <AddForm addTodoX = {this.addTodoX}/>
   </div>
   <div>
-       <Todos todos = { this.props.todos } deleteTodoX= {this.deleteTodoX} openPopUpX = {this.openPopUpX}/>
+       <Todos todos = { this.props.todos } deleteTodoX= {this.deleteTodoX} openPopUpX = {this.openPopUpX} openEditX= {this.openEditX} editTodoX = {this.editTodoX} />
        </div>
-       {/* <AddForm addTodoX = {this.addTodoX}/> */}
       </div>
     );
   }
@@ -113,6 +116,7 @@ const mapDispatchToProps = (dispatch) => {
     addTodo: (todo) => dispatch({type: 'ADD_TODO', todo: todo}),
     openPopUp: (id) => dispatch({type: 'OPEN_POPUP', id: id}),
     initTodo: (todos) => dispatch({type: 'INIT_STATUS', todos: todos}),
+    openEidt: (id) => dispatch({type: 'OPEN_EDIT', id: id})
   }
 }
 

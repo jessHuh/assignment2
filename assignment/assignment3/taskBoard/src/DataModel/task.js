@@ -21,7 +21,11 @@ const TaskSchema = new Schema({
     },
     tag: {
         type: String
-    }
+    },
+    showedit:{
+        type: Boolean,
+        default: false
+    } 
 });
 
 const Task = mongoose.model('task', TaskSchema);
